@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lights-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lights
+  template:
+    metadata:
+      labels:
+        app: lights
+    spec:
+      containers:
+      - name: lights
+        image: kabbali/ce-smart-home:lights
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

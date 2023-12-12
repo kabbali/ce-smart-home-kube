@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lights-service
+spec:
+  type: ClusterIP
+  selector:
+    app: lights
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+
+# because the service is of type ClusterIP, it is only accessible from within the cluster
+# to access it from outside the cluster, we need to run "kubectl port-forward svc/lights-service 3000:3000"

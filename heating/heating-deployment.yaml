@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heating-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: heating
+  template:
+    metadata:
+      labels:
+        app: heating
+    spec:
+      containers:
+      - name: heating
+        image: kabbali/ce-smart-home:heating
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

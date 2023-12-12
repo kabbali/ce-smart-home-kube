@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: status-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: status
+  template:
+    metadata:
+      labels:
+        app: status
+    spec:
+      containers:
+      - name: status-service
+        image: kabbali/ce-smart-home:status
+        env:
+        - name: LIGHTS_SERVICE
+          value: "http://lights-service:3000"
+        - name: HEATING_SERVICE
+          value: "http://heating-service:3001"
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
