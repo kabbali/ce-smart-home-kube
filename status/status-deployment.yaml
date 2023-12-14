@@ -17,9 +17,9 @@ spec:
         image: kabbali/ce-smart-home:status
         env:
         - name: LIGHTS_SERVICE
-          value: "http://lights-service:3000"
+          value: "http://lights-service.default.svc.cluster.local:3000"
         - name: HEATING_SERVICE
-          value: "http://heating-service:3001"
+          value: "http://heating-service.default.svc.cluster.local:3001"
         ports:
         - containerPort: 3000
         resources:
